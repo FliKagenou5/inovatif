@@ -1999,6 +1999,7 @@ body.is-ready .hero__foot {
   z-index: 1;
   display: grid;
   grid-template-columns: 1.35fr 0.9fr;
+  grid-template-rows: minmax(0, 1fr);
   width: min(1180px, 100%);
   max-height: min(760px, 90vh);
   overflow: hidden;
@@ -2284,9 +2285,12 @@ body.is-ready .hero__foot {
 .project-modal__body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: safe center;
+  min-height: 0;
   padding: clamp(28px, 4vw, 56px);
   overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .project-modal__label {
@@ -2666,8 +2670,15 @@ body.is-ready .hero__foot {
 
   .project-modal__panel {
     grid-template-columns: 1fr;
+    grid-template-rows: none;
     max-height: 90vh;
     overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .project-modal__body {
+    overflow-y: visible;
   }
 
   .project-modal__media {
@@ -3377,7 +3388,7 @@ body.is-ready .hero__foot {
     </div>
   </footer>
 
-  <div class="project-modal" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-title" aria-hidden="true">
+  <div class="project-modal" id="project-modal" data-lenis-prevent role="dialog" aria-modal="true" aria-labelledby="project-title" aria-hidden="true">
     <div class="project-modal__backdrop" data-modal-close></div>
     <div class="project-modal__panel" role="document">
       <button class="project-modal__close glass-btn" type="button" data-modal-close aria-label="Tutup studi kasus">
